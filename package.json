@@ -1,0 +1,18 @@
+{
+  "name": "time-ago-demo",
+  "version": "1.0.0",
+  "description": "Live Activity Feed demo app powered by time-ago-lite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "time-ago-lite": "file:/Users/aryansangwan/.gemini/antigravity/scratch/time-ago-lite"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}

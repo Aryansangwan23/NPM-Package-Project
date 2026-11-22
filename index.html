@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Activity Feed • time-ago-lite Demo</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-content">
+          <div class="logo-group">
+            <div class="logo-icon">⚡</div>
+            <div>
+              <h1>PulseFeed</h1>
+              <p class="subtitle">
+                Powered by <code>time-ago-lite</code>
+              </p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <div class="live-pill">
+              <span class="live-dot"></span>
+              <span>Auto-refreshing (<span id="refresh-countdown">10</span>s)</span>
+            </div>
+            <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme" title="Toggle Theme">
+              <span class="theme-icon">🌙</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="main-container">
+        <!-- Feed Column -->
+        <section class="feed-section">
+          <!-- Post Composer -->
+          <div class="card composer-card">
+            <div class="composer-header">
+              <h3>Create a Post</h3>
+              <span class="composer-hint">Posts will age live every 10s</span>
+            </div>
+            <form id="composer-form">
+              <div class="composer-inputs">
+                <input
+                  type="text"
+                  id="author-input"
+                  placeholder="Your Name (e.g. Sarah Connor)"
+                  maxlength="30"
+                  required
+                />
+                <textarea
+                  id="content-input"
+                  placeholder="What's happening right now?"
+                  rows="2"
+                  maxlength="280"
+                  required
+                ></textarea>
+              </div>
+              <div class="composer-footer">
+                <span id="char-counter" class="char-counter">0 / 280</span>
+                <button type="submit" class="btn btn-primary">
+                  <span>Post Update</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Activity Feed -->
+          <div class="feed-header">
+            <h2>Live Feed</h2>
+            <span id="feed-count" class="badge">9 items</span>
+          </div>
+
+          <div id="feed-list" class="feed-list">
+            <!-- Dynamic feed items injected here -->
+          </div>
+        </section>
+
+        <!-- Sidebar / Interactive Tester -->
+        <aside class="sidebar-section">
+          <!-- Interactive Date Tester Card -->
+          <div class="card tester-card">
+            <div class="card-header">
+              <h3>🗓️ Date Tester</h3>
+              <span class="badge badge-accent">Live Preview</span>
+            </div>
+            <p class="card-description">
+              Test <code>timeAgo()</code> with any past date, future date, timestamp, or raw input string.
+            </p>
+
+            <div class="tester-group">
+              <label for="date-picker-input">Pick Date & Time</label>
+              <input type="datetime-local" id="date-picker-input" />
+            </div>
+
+            <div class="tester-group">
+              <label for="raw-date-input">Or Enter Raw Value (ISO, timestamp, text)</label>
+              <input
+                type="text"
+                id="raw-date-input"
+                placeholder='e.g. 1767268800000, 2026-12-25, or "invalid"'
+              />
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="presets-group">
+              <label>Quick Presets</label>
+              <div class="preset-buttons">
+                <button type="button" class="preset-btn" data-preset="just-now">Just now</button>
+                <button type="button" class="preset-btn" data-preset="future-5m">+5 min</button>
+                <button type="button" class="preset-btn" data-preset="future-3d">+3 days</button>
+                <button type="button" class="preset-btn" data-preset="future-2w">+2 weeks</button>
+                <button type="button" class="preset-btn" data-preset="past-2h">-2 hours</button>
+                <button type="button" class="preset-btn" data-preset="past-4m">-4 months</button>
+                <button type="button" class="preset-btn btn-danger-soft" data-preset="invalid-test">Invalid ⚠️</button>
+              </div>
+            </div>
+
+            <!-- Result Box -->
+            <div class="result-container">
+              <div class="result-label">Output</div>
+              <div id="tester-result" class="result-box result-success">
+                <span class="result-value">Select or type a date</span>
+              </div>
+              <div id="tester-error" class="error-box hidden">
+                <span class="error-icon">⚠️</span>
+                <span id="tester-error-message" class="error-message"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Package Info Card -->
+          <div class="card info-card">
+            <h3>📦 About time-ago-lite</h3>
+            <ul class="info-list">
+              <li><strong>Zero dependencies:</strong> Pure vanilla JS</li>
+              <li><strong>Bi-directional:</strong> Past ("ago") & Future ("in")</li>
+              <li><strong>Live auto-refresh:</strong> Updates every 10s</li>
+              <li><strong>Dual export:</strong> ESM & CommonJS</li>
+            </ul>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
